@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Chicco 暖奶器：母乳加熱指南</title>
+<title>Chicco 暖奶器指南</title>
 <style>
 :root{
   --bg:#f6f8f9;--card:#fff;--text:#1d2b32;--muted:#5d6e76;--line:#dde5e9;
@@ -24,21 +24,30 @@
 }
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
 *{box-sizing:border-box}
+[hidden]{display:none!important}
 body{margin:0;background:var(--bg);color:var(--text);
   font-family:-apple-system,BlinkMacSystemFont,"PingFang HK","Noto Sans TC","Microsoft JhengHei",sans-serif;
   line-height:1.65;font-size:16px}
-main{max-width:640px;margin:0 auto;padding:20px 16px 40px}
+main{max-width:640px;margin:0 auto;padding:20px 16px 40px;counter-reset:sec}
 h1{font-size:1.4rem;margin:8px 0 4px}
 .sub{color:var(--muted);font-size:.9rem;margin:0 0 20px}
 section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:16px}
 h2{font-size:1.05rem;margin:0 0 12px;color:var(--accent)}
+h2::before{counter-increment:sec;content:counter(sec) ". "}
 h3{font-size:.95rem;margin:16px 0 6px}
 ol,ul{margin:0;padding-left:1.3rem}
 li{margin-bottom:6px}
-.modes{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.mode{border:1px solid var(--line);border-radius:10px;padding:10px 6px;text-align:center;font-size:.85rem}
-.mode b{display:block;font-size:1.1rem}
-.mode.on{background:var(--accent-soft);border-color:var(--accent)}
+.tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.tabs button{font:inherit;color:var(--text);background:var(--card);border:1px solid var(--line);
+  border-radius:10px;padding:10px 6px;min-height:44px;text-align:center;cursor:pointer}
+.tabs button b{display:block;font-size:1.1rem}
+.tabs button small{display:block;color:var(--muted);font-size:.8rem}
+.tabs button[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+.steps{list-style:none;padding:0;counter-reset:s}
+.steps li.step{counter-increment:s;padding-left:1.8rem;position:relative}
+.steps li.step::before{content:counter(s) ".";position:absolute;left:0;width:1.5rem;text-align:right;color:var(--muted)}
+.steps li.gl{font-weight:600;font-size:.95rem;margin:16px 0 6px}
+.steps li.gl:first-child{margin-top:0}
 .scroll{overflow-x:auto}
 table{width:100%;border-collapse:collapse;font-size:.9rem;min-width:360px}
 th,td{padding:8px 6px;text-align:center;border-bottom:1px solid var(--line)}
@@ -52,23 +61,37 @@ tr.grp td{background:var(--accent-soft);font-weight:600;text-align:left}
 </head>
 <body>
 <main>
-  <h1>母乳加熱指南</h1>
-  <p class="sub">Chicco 家用暖奶器 · 型號 06867_M · 只限室內使用</p>
+  <h1>Chicco 暖奶器指南</h1>
+  <p class="sub">型號 06867_M · 只限室內使用 · 玻璃闊口奶瓶 / 儲奶袋</p>
 
   <section>
-    <h2>1. 選擇模式</h2>
-    <div class="modes">
-      <div class="mode">按 1 次<b>快速</b>配方奶</div>
-      <div class="mode on">按 2 次<b>漸進</b>母乳 (g2)</div>
-      <div class="mode">按 3 次<b>食物</b>嬰兒食品</div>
+    <h2>選擇模式</h2>
+    <div class="tabs" role="group" aria-label="選擇模式">
+      <button type="button" data-mode="breast" aria-pressed="true"><b>母乳</b><small>按 2 次 · 漸進加熱 (g2)</small></button>
+      <button type="button" data-mode="formula" aria-pressed="false"><b>配方奶</b><small>按 1 次 · 快速加熱 (g1)</small></button>
     </div>
-    <p class="note">母乳（玻璃奶瓶及儲奶袋）一律使用「漸進加熱」。</p>
+    <p class="note" data-m="breast">母乳（玻璃奶瓶及儲奶袋）一律使用「漸進加熱」。</p>
+    <p class="note" data-m="formula" hidden>配方奶使用「快速加熱」。儲奶袋只可用於母乳的漸進加熱。</p>
+  </section>
+
+  <section data-m="formula" hidden>
+    <h2>沖調奶粉（Aptamil）</h2>
+    <ol class="steps">
+      <li class="step">將雙手洗淨及清潔沖調範圍。將奶瓶、奶嘴及器具放入開水中煮沸消毒。</li>
+      <li class="step">將安全的飲用水煮沸並放涼至 40°C。將正確份量已煮沸的暖水倒入已消毒的奶瓶。</li>
+      <li class="step">只能使用隨附量匙。輕輕地舀滿一平量匙並刮平，避免壓實奶粉。</li>
+      <li class="step">每 30 毫升水加一平匙奶粉。蓋奶瓶蓋，搖動奶瓶至奶粉完全溶解。</li>
+      <li class="step">準備餵哺前，把奶液滴在手腕上試溫。沖調後馬上餵哺（不要儲存）。請把喝剩的奶液倒去。</li>
+    </ol>
+    <p class="note">奶粉經噴霧乾燥法製成，過程中部分營養素可能會變成深色顆粒，此屬正常現象，並不影響產品的質量或安全。</p>
+    <p class="note">沖調水溫請以奶粉罐上的指引為準。Aptamil 指引為放涼至 40°C，暖奶器說明書則以 70°C 的水沖調為例。</p>
   </section>
 
   <section>
-    <h2>2. 注水量（漸進加熱）</h2>
+    <h2>注水量<span data-m="breast">（漸進加熱）</span><span data-m="formula" hidden>（快速加熱）</span></h2>
     <p class="note" style="margin:0 0 8px">注水量單位：毫升。</p>
-    <div class="scroll">
+
+    <div class="scroll" data-m="breast">
     <table>
       <tr><th>容器</th><th>室溫 20°C</th><th>雪櫃 5°C</th><th>急凍 −18°C</th></tr>
       <tr class="grp"><td colspan="4">玻璃闊口奶瓶</td></tr>
@@ -80,38 +103,54 @@ tr.grp td{background:var(--accent-soft);font-weight:600;text-align:left}
       <tr><td>250 毫升</td><td>不適用</td><td>200</td><td>200</td></tr>
     </table>
     </div>
-    <p class="note">* 60 毫升的奶要放在 150 毫升容量的奶瓶中加熱。玻璃奶瓶不適用急凍起始；急凍母乳請先放入儲奶袋加熱，或先解凍。儲奶袋不適用室溫起始。</p>
+    <p class="note" data-m="breast">* 60 毫升的奶要放在 150 毫升容量的奶瓶中加熱。玻璃奶瓶不適用急凍起始；急凍母乳請先放入儲奶袋加熱，或先解凍。儲奶袋不適用室溫起始。</p>
+
+    <div class="scroll" data-m="formula" hidden>
+    <table>
+      <tr><th>容器</th><th>室溫 20°C</th><th>雪櫃 5°C</th></tr>
+      <tr class="grp"><td colspan="3">玻璃闊口奶瓶</td></tr>
+      <tr><td>60 毫升</td><td>不適用</td><td>不適用</td></tr>
+      <tr><td>150 毫升</td><td>50</td><td>70</td></tr>
+      <tr><td>250 毫升</td><td>60</td><td>60</td></tr>
+      <tr class="grp"><td colspan="3">儲奶袋</td></tr>
+      <tr><td>所有容量</td><td>不適用</td><td>不適用</td></tr>
+    </table>
+    </div>
+    <p class="note" data-m="formula" hidden>說明書的快速加熱水量表沒有 60 毫升玻璃奶瓶的數值，儲奶袋也不適用。Aptamil 指引建議沖調後馬上餵哺、不要儲存，「雪櫃」一欄只在奶已放入雪櫃時使用。</p>
   </section>
 
   <section>
-    <h2>3. 加熱步驟</h2>
-    <h3>準備</h3>
-    <ol>
-      <li>奶瓶先消毒。機內沒有水時，切勿使用。</li>
-      <li>暖奶器放在平坦穩定的表面，電源線接好電源連接器，但先不要插電。</li>
-      <li>按上表量水，倒入主體。用有刻度的奶瓶量水，不要放在水龍頭下直接注水。</li>
-    </ol>
-    <h3>加熱</h3>
-    <ol start="4">
-      <li>玻璃奶瓶裝好奶嘴和環，不加蓋。儲奶袋直接使用。</li>
-      <li>容量少於 150 毫升的玻璃奶瓶或儲奶袋，必須先放在支架上，再慢慢放入主體。容量 150 毫升或以上，說明書沒有強制要求。</li>
-      <li>若水從頂部溢出，立即抹乾外部、底座、電源線和插頭，並倒走多餘的水。</li>
-      <li>插上電源，聽到嗶聲。觸摸開/關鈕，再按模式鍵 2 次，g2 燈亮起。</li>
-      <li>按開/關鈕開始加熱。選好模式後 3 分鐘內未啟動，機器會自動關閉。</li>
-      <li>燈閃爍並發出長嗶聲，代表加熱完成。</li>
-      <li>關機：按住開/關鈕直至聽到持續嗶聲，然後拔掉電源。</li>
-    </ol>
-    <h3>餵食前</h3>
-    <ol start="11">
-      <li>取出奶瓶或儲奶袋，徹底抹乾。</li>
-      <li>在手腕內側滴幾滴，檢查溫度（最高 37°C）。</li>
-      <li>未夠暖：使用「保持溫度」或開始新一輪加熱，直至達到所需溫度。</li>
+    <h2>加熱步驟</h2>
+    <ol class="steps">
+      <li class="gl">準備</li>
+      <li class="step">奶瓶先消毒。機內沒有水時，切勿使用。</li>
+      <li class="step">暖奶器放在平坦穩定的表面，電源線接好電源連接器，但先不要插電。</li>
+      <li class="step">按上表量水，倒入主體。用有刻度的奶瓶量水，不要放在水龍頭下直接注水。</li>
+
+      <li class="gl">加熱</li>
+      <li class="step" data-m="breast">玻璃奶瓶裝好奶嘴和環，不加蓋。儲奶袋直接使用。</li>
+      <li class="step" data-m="formula" hidden>奶瓶裝好奶嘴和環，不加蓋。</li>
+      <li class="step" data-m="breast">容量少於 150 毫升的玻璃奶瓶或儲奶袋，必須先放在支架上，再慢慢放入主體。容量 150 毫升或以上，說明書沒有強制要求。</li>
+      <li class="step" data-m="formula" hidden>將奶瓶慢慢放入主體。容量 150 毫升或以上，說明書沒有強制要求用支架。</li>
+      <li class="step">若水從頂部溢出，立即抹乾外部、底座、電源線和插頭，並倒走多餘的水。</li>
+      <li class="step" data-m="breast">插上電源，聽到嗶聲。觸摸開/關鈕，再按模式鍵 2 次，g2 燈亮起。</li>
+      <li class="step" data-m="formula" hidden>插上電源，聽到嗶聲。觸摸開/關鈕，再按模式鍵 1 次，g1 燈亮起。</li>
+      <li class="step">按開/關鈕開始加熱。選好模式後 3 分鐘內未啟動，機器會自動關閉。</li>
+      <li class="step">燈閃爍並發出長嗶聲，代表加熱完成。</li>
+      <li class="step">關機：按住開/關鈕直至聽到持續嗶聲，然後拔掉電源。</li>
+
+      <li class="gl">餵食前</li>
+      <li class="step" data-m="breast">取出奶瓶或儲奶袋，徹底抹乾。</li>
+      <li class="step" data-m="formula" hidden>取出奶瓶，徹底抹乾。</li>
+      <li class="step" data-m="breast">在手腕內側滴幾滴，檢查溫度（最高 37°C）。不要搖晃母乳。</li>
+      <li class="step" data-m="formula" hidden>搖動奶瓶幾秒鐘以平衡溫度，再在手腕內側滴幾滴，檢查溫度（最高 37°C）。</li>
+      <li class="step">未夠暖：使用「保持溫度」或開始新一輪加熱，直至達到所需溫度。</li>
     </ol>
   </section>
 
   <section>
-    <h2>4. 母乳注意事項</h2>
-    <ul>
+    <h2>注意事項</h2>
+    <ul data-m="breast">
       <li>不要搖晃母乳奶瓶，以免產生氣泡。</li>
       <li>奶量範圍：說明書只列出 60、150、250 毫升三個規格，最少 60 毫升，最多 250 毫升。</li>
       <li>過度加熱會令母乳的營養物質和維生素流失。</li>
@@ -121,10 +160,18 @@ tr.grp td{background:var(--accent-soft);font-weight:600;text-align:left}
       <li>加熱時間及最終溫度會受容器物料、容量及起始溫度影響。</li>
       <li>儲奶袋必須使用漸進加熱模式。</li>
     </ul>
+    <ul data-m="formula" hidden>
+      <li>先按上面的 Aptamil 指引沖好奶粉，再用暖奶器加熱。</li>
+      <li>奶量範圍：快速加熱水量表只列出 150 和 250 毫升的玻璃奶瓶。</li>
+      <li>切勿把配方奶急凍。</li>
+      <li>內含奶粉的奶瓶：搖動幾秒鐘以平衡溫度，並在手腕內側滴幾滴檢查溫度。</li>
+      <li>加熱後立即飲用，不可二次加熱。餵食後剩下的奶要丟棄。</li>
+      <li>加熱時間及最終溫度會受容器物料、容量及起始溫度影響。</li>
+    </ul>
   </section>
 
   <section>
-    <h2>5. 保持溫度功能</h2>
+    <h2>保持溫度功能</h2>
     <ul>
       <li>加熱完成後如未關機，可保溫最多 60 分鐘，之後機器會嗶聲並自動關閉。</li>
     </ul>
@@ -133,7 +180,25 @@ tr.grp td{background:var(--accent-soft);font-weight:600;text-align:left}
     </div>
   </section>
 
-  <p class="note">資料整理自 Chicco 暖奶器中文說明書。如有差異，以說明書及英文版本為準。香港查詢：customer@chicco.com.hk</p>
+  <p class="note">資料整理自 Chicco 暖奶器中文說明書及 Aptamil 沖調指引。如有差異，以說明書、奶粉罐及英文版本為準。香港查詢：customer@chicco.com.hk</p>
 </main>
+<script>
+(function(){
+  var buttons=document.querySelectorAll('.tabs button');
+  function setMode(m){
+    document.querySelectorAll('[data-m]').forEach(function(el){
+      el.hidden=el.getAttribute('data-m')!==m;
+    });
+    buttons.forEach(function(b){
+      b.setAttribute('aria-pressed',b.getAttribute('data-mode')===m?'true':'false');
+    });
+    try{history.replaceState(null,'','#'+m);}catch(e){}
+  }
+  buttons.forEach(function(b){
+    b.addEventListener('click',function(){setMode(b.getAttribute('data-mode'));});
+  });
+  setMode(location.hash==='#formula'?'formula':'breast');
+})();
+</script>
 </body>
 </html>

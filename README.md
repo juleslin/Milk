@@ -1,7 +1,7 @@
 # Silas
 
-Chicco 暖奶器（型號 06867_M）母乳加熱指南。
+Chicco bottle warmer guide (model 06867_M) for breast milk and formula (Aptamil), using wide-mouth glass bottles and milk storage bags.
 
-👉 [打開網頁版](https://juleslin.github.io/Silas/)
+👉 [Open the web page](https://juleslin.github.io/Silas/)
 
-> 如連結未能打開，請先到 Settings → Pages，選擇 `main` 分支及 `/ (root)`，等 1 至 2 分鐘後再試。
+> If the link does not open, go to Settings → Pages, choose the `main` branch and `/ (root)`, then try again after 1–2 minutes.
