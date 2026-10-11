@@ -28,7 +28,7 @@ html{scroll-padding-top:env(safe-area-inset-top,0px)}
 body{margin:0;background:var(--bg);color:var(--text);
   font-family:-apple-system,BlinkMacSystemFont,"PingFang HK","Noto Sans TC","Microsoft JhengHei",sans-serif;
   line-height:1.65;font-size:16px}
-main{max-width:640px;margin:0 auto;padding:20px 16px 40px;counter-reset:sec}
+main{max-width:640px;margin:0 auto;padding:16px 16px 40px;counter-reset:sec}
 h1{font-size:1.4rem;margin:8px 0 4px}
 .sub{color:var(--muted);font-size:.9rem;margin:0 0 20px}
 section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:16px}
@@ -37,11 +37,11 @@ h2::before{counter-increment:sec;content:counter(sec) ". "}
 h3{font-size:.95rem;margin:16px 0 6px}
 ol,ul{margin:0;padding-left:1.3rem}
 li{margin-bottom:6px}
-.tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .tabs button{font:inherit;color:var(--text);background:var(--card);border:1px solid var(--line);
   border-radius:10px;padding:10px 6px;min-height:44px;text-align:center;cursor:pointer}
-.tabs button b{display:block;font-size:1.1rem}
-.tabs button small{display:block;color:var(--muted);font-size:.8rem}
+.tabs button b{display:block;font-size:1.05rem}
+.tabs button small{display:block;color:var(--muted);font-size:.75rem;line-height:1.35;margin-top:2px}
 .tabs button[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
 .steps{list-style:none;padding:0;counter-reset:s}
 .steps li.step{counter-increment:s;padding-left:1.8rem;position:relative}
@@ -57,24 +57,24 @@ tr.grp td{background:var(--accent-soft);font-weight:600;text-align:left}
 .warn{background:var(--warn-soft);border-left:4px solid var(--warn);border-radius:8px;padding:12px 14px;font-size:.92rem}
 .warn b{color:var(--warn)}
 .note{color:var(--muted);font-size:.82rem;margin:10px 0 0}
+.info{color:var(--muted);font-size:.85rem;margin:0 0 10px}
 </style>
 </head>
 <body>
 <main>
-  <h1>Chicco 暖奶器指南</h1>
-  <p class="sub">型號 06867_M · 只限室內使用 · 玻璃闊口奶瓶 / 儲奶袋</p>
-
   <section>
     <h2>選擇模式</h2>
     <div class="tabs" role="group" aria-label="選擇模式">
-      <button type="button" data-mode="breast" aria-pressed="true"><b>母乳</b><small>按 2 次 · 漸進加熱 (g2)</small></button>
-      <button type="button" data-mode="formula" aria-pressed="false"><b>配方奶</b><small>按 1 次 · 快速加熱 (g1)</small></button>
+      <button type="button" data-mode="breast" aria-pressed="true"><b>母乳</b><small>按 2 次<br>漸進加熱 (g2)</small></button>
+      <button type="button" data-mode="formula" aria-pressed="false"><b>配方奶</b><small>按 1 次<br>快速加熱 (g1)</small></button>
+      <button type="button" data-mode="aptamil" aria-pressed="false"><b>沖奶粉</b><small>Aptamil<br>沖調步驟</small></button>
     </div>
     <p class="note" data-m="breast">母乳（玻璃奶瓶及儲奶袋）一律使用「漸進加熱」。</p>
-    <p class="note" data-m="formula" hidden>配方奶使用「快速加熱」。儲奶袋只可用於母乳的漸進加熱。</p>
+    <p class="note" data-m="formula" hidden>配方奶使用「快速加熱」。儲奶袋只可用於母乳的漸進加熱。奶粉的沖調步驟請按「沖奶粉」。</p>
+    <p class="note" data-m="aptamil" hidden>Aptamil 奶粉的沖調步驟。沖好後如需加熱，請回到「配方奶」。</p>
   </section>
 
-  <section data-m="formula" hidden>
+  <section data-m="aptamil" hidden>
     <h2>沖調奶粉（Aptamil）</h2>
     <ol class="steps">
       <li class="step">將雙手洗淨及清潔沖調範圍。將奶瓶、奶嘴及器具放入開水中煮沸消毒。</li>
@@ -87,8 +87,9 @@ tr.grp td{background:var(--accent-soft);font-weight:600;text-align:left}
     <p class="note">沖調水溫請以奶粉罐上的指引為準。Aptamil 指引為放涼至 40°C，暖奶器說明書則以 70°C 的水沖調為例。</p>
   </section>
 
-  <section>
+  <section data-m="breast formula">
     <h2>注水量<span data-m="breast">（漸進加熱）</span><span data-m="formula" hidden>（快速加熱）</span></h2>
+    <p class="info">Chicco 暖奶器 · 型號 06867_M · 只限室內使用 · 玻璃闊口奶瓶 / 儲奶袋</p>
     <p class="note" style="margin:0 0 8px">注水量單位：毫升。</p>
 
     <div class="scroll" data-m="breast">
@@ -119,7 +120,7 @@ tr.grp td{background:var(--accent-soft);font-weight:600;text-align:left}
     <p class="note" data-m="formula" hidden>說明書的快速加熱水量表沒有 60 毫升玻璃奶瓶的數值，儲奶袋也不適用。Aptamil 指引建議沖調後馬上餵哺、不要儲存，「雪櫃」一欄只在奶已放入雪櫃時使用。</p>
   </section>
 
-  <section>
+  <section data-m="breast formula">
     <h2>加熱步驟</h2>
     <ol class="steps">
       <li class="gl">準備</li>
@@ -148,7 +149,7 @@ tr.grp td{background:var(--accent-soft);font-weight:600;text-align:left}
     </ol>
   </section>
 
-  <section>
+  <section data-m="breast formula">
     <h2>注意事項</h2>
     <ul data-m="breast">
       <li>不要搖晃母乳奶瓶，以免產生氣泡。</li>
@@ -161,7 +162,7 @@ tr.grp td{background:var(--accent-soft);font-weight:600;text-align:left}
       <li>儲奶袋必須使用漸進加熱模式。</li>
     </ul>
     <ul data-m="formula" hidden>
-      <li>先按上面的 Aptamil 指引沖好奶粉，再用暖奶器加熱。</li>
+      <li>先按「沖奶粉」內的 Aptamil 指引沖好奶粉，再用暖奶器加熱。</li>
       <li>奶量範圍：快速加熱水量表只列出 150 和 250 毫升的玻璃奶瓶。</li>
       <li>切勿把配方奶急凍。</li>
       <li>內含奶粉的奶瓶：搖動幾秒鐘以平衡溫度，並在手腕內側滴幾滴檢查溫度。</li>
@@ -170,7 +171,7 @@ tr.grp td{background:var(--accent-soft);font-weight:600;text-align:left}
     </ul>
   </section>
 
-  <section>
+  <section data-m="breast formula">
     <h2>保持溫度功能</h2>
     <ul>
       <li>加熱完成後如未關機，可保溫最多 60 分鐘，之後機器會嗶聲並自動關閉。</li>
@@ -187,7 +188,7 @@ tr.grp td{background:var(--accent-soft);font-weight:600;text-align:left}
   var buttons=document.querySelectorAll('.tabs button');
   function setMode(m){
     document.querySelectorAll('[data-m]').forEach(function(el){
-      el.hidden=el.getAttribute('data-m')!==m;
+      el.hidden=el.getAttribute('data-m').split(' ').indexOf(m)===-1;
     });
     buttons.forEach(function(b){
       b.setAttribute('aria-pressed',b.getAttribute('data-mode')===m?'true':'false');
@@ -197,7 +198,8 @@ tr.grp td{background:var(--accent-soft);font-weight:600;text-align:left}
   buttons.forEach(function(b){
     b.addEventListener('click',function(){setMode(b.getAttribute('data-mode'));});
   });
-  setMode(location.hash==='#formula'?'formula':'breast');
+  var h=location.hash.slice(1);
+  setMode(h==='formula'||h==='aptamil'?h:'breast');
 })();
 </script>
 </body>
